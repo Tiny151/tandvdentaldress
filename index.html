@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>T&V Clinic Dress</title>
+        <style>
+            /* CSS Styles */
+            :root {
+                --primary-blue: #0056b3;
+                --light-blue: #e0f2fe;
+                --white: #ffffff;
+                --dark-text: #333333;
+                --light-gray: #f4f7f6;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: var(--light-gray);
+                color: var(--dark-text);
+            }
+
+            header {
+                background-color: var(--white);
+                color: var(--primary-blue);
+                padding: 1rem 5%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                position: sticky;
+                top: 0;
+                z-index: 100;
+            }
+
+            .logo h1 {
+                margin: 0;
+                font-size: 1.8rem;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .cart {
+                font-size: 1.1rem;
+                font-weight: bold;
+                cursor: pointer;
+                background-color: var(--primary-blue);
+                color: var(--white);
+                padding: 10px 20px;
+                border-radius: 5px;
+                border: none;
+            }
+
+            .hero {
+                background-color: var(--primary-blue);
+                color: var(--white);
+                text-align: center;
+                padding: 4rem 2rem;
+            }
+
+            .hero h2 {
+                margin-top: 0;
+                font-size: 2.5rem;
+            }
+
+            .container {
+                width: 90%;
+                max-width: 1200px;
+                margin: 2rem auto;
+            }
+
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .product-card {
+                background-color: var(--white);
+                border-radius: 8px;
+                padding: 15px;
+                text-align: center;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+                transition: transform 0.3s;
+            }
+
+            .product-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 5px 15px rgba(0, 86, 179, 0.2);
+            }
+
+            .product-img {
+                width: 100%;
+                height: 200px;
+                background-color: var(--light-blue);
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--primary-blue);
+                font-weight: bold;
+                margin-bottom: 15px;
+            }
+
+            .price {
+                font-size: 1.2rem;
+                color: var(--primary-blue);
+                font-weight: bold;
+                margin: 10px 0;
+            }
+
+            .btn-add {
+                background-color: var(--white);
+                color: var(--primary-blue);
+                border: 2px solid var(--primary-blue);
+                padding: 8px 15px;
+                border-radius: 4px;
+                cursor: pointer;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+
+            .btn-add:hover {
+                background-color: var(--primary-blue);
+                color: var(--white);
+            }
+
+            footer {
+                background-color: var(--dark-text);
+                color: var(--white);
+                padding: 2rem 5%;
+                margin-top: 3rem;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 20px;
+            }
+
+            footer h3 {
+                color: var(--light-blue);
+            }
+
+            footer p {
+                margin: 5px 0;
+                font-size: 0.9rem;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <h1>🦷 T&V Clinic Dress</h1>
+            </div>
+            <button class="cart" onclick="viewCart()">
+                Cart (<span id="cart-count">0</span>)
+            </button>
+        </header>
+
+        <section class="hero">
+            <h2>Premium Praxiskleidung</h2>
+            <p>
+                Professional apparel for dental clinics. Clean, comfortable, and
+                reliable.
+            </p>
+        </section>
+
+        <div class="container">
+            <h2
+                style="
+                    color: var(--primary-blue);
+                    text-align: center;
+                    margin-bottom: 30px;
+                "
+            >
+                Our Products
+            </h2>
+            <div class="product-grid" id="product-list"></div>
+        </div>
+
+        <footer>
+            <div>
+                <h3>T&V Clinic Dress</h3>
+                <p><strong>Adresse:</strong> Marienplatz 10, 80331 München</p>
+            </div>
+            <div>
+                <h3>Contact Us</h3>
+                <p><strong>Telefon:</strong> 05404 133 07</p>
+                <p><strong>Email:</strong> info@clinicdress-munchen.de</p>
+            </div>
+            <div>
+                <h3>Payment Info</h3>
+                <p><strong>Bankverbindung:</strong> Stadtsparkasse München</p>
+                <p><strong>IBAN:</strong> DE86 7015 0000 0000 2030 00</p>
+            </div>
+        </footer>
+
+        <script>
+            // JavaScript Data & Logic
+            const products = [
+                {
+                    id: 1,
+                    name: "T-Shirt (Classic White)",
+                    price: 29.99,
+                    type: "Shirt",
+                },
+                {
+                    id: 2,
+                    name: "Premium Scrub Top (Blue)",
+                    price: 39.99,
+                    type: "Top",
+                },
+                {
+                    id: 3,
+                    name: "Comfort Medical Pants",
+                    price: 45.0,
+                    type: "Pants",
+                },
+                {
+                    id: 4,
+                    name: "Ergonomic Clinic Clogs",
+                    price: 59.99,
+                    type: "Shoes",
+                },
+                {
+                    id: 5,
+                    name: "Breathable Surgical Cap",
+                    price: 15.0,
+                    type: "Hat",
+                },
+                { id: 6, name: "Dentist Lab Coat", price: 85.0, type: "Coat" },
+                {
+                    id: 7,
+                    name: "Anti-slip Nursing Shoes",
+                    price: 65.0,
+                    type: "Shoes",
+                },
+                {
+                    id: 8,
+                    name: "Warm Fleece Jacket",
+                    price: 49.99,
+                    type: "Jacket",
+                },
+                {
+                    id: 9,
+                    name: "Stretch Fit Scrub Pants",
+                    price: 42.0,
+                    type: "Pants",
+                },
+                {
+                    id: 10,
+                    name: "Compression Socks",
+                    price: 12.99,
+                    type: "Socks",
+                },
+            ];
+
+            let cartCount = 0;
+
+            function renderProducts() {
+                const productList = document.getElementById("product-list");
+
+                products.forEach((product) => {
+                    const card = document.createElement("div");
+                    card.className = "product-card";
+                    card.innerHTML = `
+                    <div class="product-img">Image: ${product.type}</div>
+                    <h3>${product.name}</h3>
+                    <div class="price">€${product.price.toFixed(2)}</div>
+                    <button class="btn-add" onclick="addToCart()">Add to Cart</button>
+                `;
+                    productList.appendChild(card);
+                });
+            }
+
+            function addToCart() {
+                cartCount++;
+                document.getElementById("cart-count").innerText = cartCount;
+                alert("Item added to cart!");
+            }
+
+            function viewCart() {
+                if (cartCount === 0) {
+                    alert("Your cart is empty.");
+                } else {
+                    alert(`You have ${cartCount} items in your Warenkorb.`);
+                }
+            }
+
+            // Initialize the page
+            renderProducts();
+        </script>
+    </body>
+</html>
